@@ -6,7 +6,7 @@
   "scripts": {
     "test": "peter tests",
     "inspect": "niim backend/server.js",
-    "server": "node src/server.js"
+    "server": "node backend/server.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/wiwichips/inventrak/issues"
   },
-  "homepage": "https://github.com/wiwichips/inventrak#readme"
+  "homepage": "https://github.com/wiwichips/inventrak#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
