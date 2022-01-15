@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+const assert = require('assert');
+
+const inventory = require('../backend/inventory.js');
+
+// insert an item into the inventory
+const id = await inventory.createItem('Name');
+
+// attempt to delete the item
+await inventory.deleteItem(id);
+
+// make sure there are no items
+const items = await inventory.listItems();
+assert.equal(Object.keys(items).length, 0);
+

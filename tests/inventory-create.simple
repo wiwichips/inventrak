@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+const assert = require('assert');
+
+const inventory = require('../backend/inventory.js');
+
+const title = 'helloWorld';
+await inventory.createItem(title);
+const items = await inventory.listItems();
+
+// ensure there is only one item in the array and its title is 'helloWorld'
+assert.equal(Object.keys(items).length, 1);
+assert.equal(items[0].title, title);
+

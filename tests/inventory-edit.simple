@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+
+const assert = require('assert');
+
+const inventory = require('../backend/inventory.js');
+
+// insert an item into the inventory
+const title1 = 'helloWorld';
+const title2 = 'GoodbyeWorld';
+const id = await inventory.createItem(title1);
+
+// attempt to edit that item
+await inventory.editItem(id, { title: title2, quantity: 6 });
+
+// make sure the edit worked, the title should now be "GoodbyeWorld", qty = 6
+const items = await inventory.listItems();
+assert.equal(items[id].title, title2);
+assert.equal(items[id].quantity, 6);
+

@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+const assert = require('assert');
+
+const inventory = require('../backend/inventory.js');
+
+// insert 4 items into the inventory
+await Promise.all([
+  inventory.createItem('Name'),
+  inventory.createItem('Name'),
+  inventory.createItem('Name'),
+  inventory.createItem('Name'),
+]);
+
+// make sure there are 4 items
+const items = await inventory.listItems();
+assert.equal(Object.keys(items).length, 4);
+
