@@ -23,6 +23,8 @@ exports.createItem = async function createItem (title, groups=[], initialQuantit
 }
 
 exports.editItem = async function editItem(id, edits) { 
+  if (!inventory.items[id])
+    throw new Error (`${id} does not exist`);
   for (property in edits) {
     if (!(property in inventory.items[id]))
       throw new Error(`${property} is not a property of an item`);
