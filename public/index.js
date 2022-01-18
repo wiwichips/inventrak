@@ -35,7 +35,11 @@ async function remove() {
   const id = 3;
   
   const body = { id };
-  const response = await fetch(`${url}delete`, { method: 'DELETE', body: JSON.stringify(body)});
+  const response = await fetch(`${url}delete`, {
+    method: 'DELETE',
+    body: JSON.stringify(body),
+    headers: { 'Content-Type': 'application/json' }
+  });
 }
 
 async function updateList() {

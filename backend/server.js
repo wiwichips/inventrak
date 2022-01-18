@@ -39,11 +39,7 @@ app.post('/edit', (req, res) => {
 });
 
 app.delete('/delete', (req, res) => {
-  // temporary id for testing
-  const id = 2;
-
-debugger; console.log(req.body);
-
+  const { id } = req.body;
   inventory.deleteItem(id)
     .then(() => res.send())
     .catch(error => {
