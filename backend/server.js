@@ -7,14 +7,16 @@ const inventory = require('./inventory');
 
 const app = express();
 
+// middleware for POST body parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // serve html
 app.get('/', express.static(path.join(__dirname, '../public')));
+app.get('/index.js', express.static(path.join(__dirname, '../public')));
 
 app.post('/create', (req, res) => {
-  // temporary hardcoded title for testing
-  const title = 'test';
-
-  inventory.createItem(title)
+  inventory.createItem(req.body.title)
     .then(id => {
       res.send({id});
     })
@@ -24,15 +26,14 @@ app.post('/create', (req, res) => {
 });
 
 app.post('/edit', (req, res) => {
-  // temporary hardcoded for testing
-  const id = 0;
-  const edits = {
-    title: 'newAwesomeTitle'
-  };
+  const { id, prototype } = req.body;
 
-  inventory.editItem(id, edits)
+  console.log(id, prototype);
+
+  inventory.editItem(id, prototype)
     .then(() => res.send())
     .catch(error => {
+      console.log(error);
       res.status(400).send(error.message); 
     });
 });
@@ -40,6 +41,8 @@ app.post('/edit', (req, res) => {
 app.delete('/delete', (req, res) => {
   // temporary id for testing
   const id = 2;
+
+debugger; console.log(req.body);
 
   inventory.deleteItem(id)
     .then(() => res.send())
