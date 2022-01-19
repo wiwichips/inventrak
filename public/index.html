@@ -4,7 +4,46 @@
     <meta charset="UTF-8">
   </head>
   <body>
-    <p id="list">test</p>
+    <h1>Inventrak</h1>
+
+    <!-- Create -->
+    <div id='create-div'>
+      <h2>Create Item</h2>
+      <p>Title</p>
+      <input type='text' id='create-title' name='create-title'> 
+      <p>Quantity</p>
+      <input type='text' id='create-quantity' name='create-quantity'> 
+      <p>Create<p>
+      <button type="button" id='create-button'>CREATE</button> 
+    </div>
+
+    <!-- edit -->
+    <div id='edit-div'>
+      <h2>Edit Item</h2>
+      <p>ID</p>
+      <input type='text' id='edit-id' name='edit-id'> 
+      <p>Title</p>
+      <input type='text' id='edit-title' name='edit-title'> 
+      <p>Quantity</p>
+      <input type='text' id='edit-quantity' name='edit-quantity'> 
+      <p>Edit<p>
+      <button type="button" id='edit-button'>EDIT</button> 
+    </div>
+
+    <!-- delete -->
+    <div id='delete-div'>
+      <h2>Delete Item</h2>
+      <p>ID</p>
+      <input type='text' id='delete-id' name='delete-id'> 
+      <p>Delete<p>
+      <button type="button" id='delete-button'>DELETE</button> 
+    </div> 
+
+    <!-- List display -->
+    <div id='list-div'>
+      <h2>List Items</h2>
+      <p id="list">There are currently no items in the database.</p>
+    </div>
     
     <script src="index.js"></script> 
   </body>
