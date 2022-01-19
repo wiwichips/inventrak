@@ -39,10 +39,6 @@ async function updateList() {
   document.getElementById("list").innerHTML = JSON.stringify(list, null, '<br>');
 }
 
-async function downloadCSV() {
-  console.log('download csv');
-}
-
 // event listeners
 document.getElementById("create-button").addEventListener("click", () => {
   const title = document.getElementById("create-title").value;
@@ -79,8 +75,5 @@ document.getElementById("delete-button").addEventListener("click", () => {
   remove(id).then(updateList);
 });
 
-document.getElementById("csv-button").addEventListener("click", () => {
-  downloadCSV();
-});
 updateList();
 
