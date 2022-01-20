@@ -4,7 +4,10 @@
  * This test requires the setup.js script to have been run alread
  */
 
-const db = require('../database/mysqlInterface.js');
+require('dotenv').config();
+const db = require('../backend/database/mysqlInterface.js');
+
+debugger;
 
 // first make an insert
 const prototype = {
@@ -12,14 +15,14 @@ const prototype = {
   quantity: 100,
 };
 
-const id = await db.insert(prototype);
+const id = await db.insertItem(prototype);
 
 // then check if the value is in the list
-const rows = await db.select('*');
+const rows = await db.getItemList('*');
 
 for (i in rows) {
   if (rows[i].title === prototype.title) {
-    await db.delete(id);
+    await db.deleteItem(id);
     process.exit(0);
   }
 }
