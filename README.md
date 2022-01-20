@@ -78,4 +78,4 @@ Run with the "populate" flag to populate the database with test values. Usage: `
 - Add pagination to the list endpoint allowing for a subset of the data to be sent at a time. This would be helpful for performance on the frontend and backend.
 - Add a cache for the most commonly requested items in inventory.
 - Add more fields for inventory items such as description and price.
-
+- Precent SQL injections by sanitizing data.
