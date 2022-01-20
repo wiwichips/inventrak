@@ -1,5 +1,7 @@
 exports.databaseName = process.env.DB_NAME;
 
+debugger;
+
 exports.tables = [{
     name: 'item',
     columns: {
