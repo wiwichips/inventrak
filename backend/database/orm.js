@@ -38,3 +38,15 @@ exports.insert = function insert(rows, dbName, tableName) {
   return sqlString;
 }
 
+exports.edit = function edit(id, prototype, dbName, tableName) {
+  let sqlString = `UPDATE ${dbName}.${tableName} SET `;
+
+  for (column in prototype) {
+    sqlString += `${column} = ${prototype[column]}, `
+  }
+  sqlString = sqlString.substring(0, sqlString.length - 2);
+  sqlString += ` WHERE id=${id};`;
+
+  return sqlString;
+}
+

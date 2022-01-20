@@ -51,3 +51,12 @@ exports.deleteItem = async function remove (id) {
   pool.end();
 }
 
+// TODO: allow for multiple IDs and prototypes to be passed and edited in parallel
+exports.editItem = async function edit (id, prototype) {
+  const queryString = orm.edit(id, prototype, dbName, tableName);
+
+  const pool = await openDBPool();
+  const rowsResult = await pool.query(queryString);
+  pool.end();
+}
+
