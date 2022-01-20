@@ -1,4 +1,5 @@
 const db = require('./database/mysqlInterface');
+const csv = require('./csv');
 
 exports.createItem = async function createItem (title, groups=[], initialQuantity=0) {
   if (initialQuantity < 0) {
@@ -27,3 +28,7 @@ exports.listItems = async function listItems() {
   return db.getItemList(); 
 }
 
+exports.generateCSV = async function generateCSV() {
+  const items = await db.getItemList();
+  return csv.generateCSV(items);  
+}

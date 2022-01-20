@@ -34,8 +34,6 @@ app.post('/create', (req, res) => {
 app.post('/edit', (req, res) => {
   const { id, prototype } = req.body;
 
-console.log(prototype);
-
   inventory.editItem(id, prototype)
     .then(() => res.send())
     .catch(error => {
@@ -58,6 +56,19 @@ app.get('/list', (req, res) => {
   inventory.listItems()
     .then(items => {
       res.send(items);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(502).send(error.message);
+    });
+});
+
+app.get('/data.csv', (req, res) => {
+  inventory.generateCSV()
+    .then(csv => {
+
+      res.setHeader('Content-type', 'text/csv');
+      res.send(csv);
     })
     .catch(error => {
       console.error(error);
