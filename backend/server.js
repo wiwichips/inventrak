@@ -21,7 +21,7 @@ app.get('/index.js', express.static(path.join(__dirname, '../public')));
 app.post('/create', (req, res) => {
   const { title, quantity } = req.body;
 
-  inventory.createItem(title, [], quantity)
+  inventory.createItem(title, quantity)
     .then(id => {
       res.send({id});
     })

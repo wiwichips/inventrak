@@ -1,7 +1,7 @@
 const db = require('./database/mysqlInterface');
 const csv = require('./csv');
 
-exports.createItem = async function createItem (title, groups=[], initialQuantity=0) {
+exports.createItem = async function createItem (title, initialQuantity=0) {
   if (initialQuantity < 0) {
     throw new Error('initialQuantity for item cannot be less than 0');
   }
