@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+/**
+ * This test requires the setup.js script to have been run alread
+ */
+
+require('dotenv').config();
+const db = require('../backend/database/mysqlInterface.js');
+
+async function main() {
+
+// first make an insert
+const prototype = {
+  title: `item-${new Date().valueOf()}`,
+  quantity: 100,
+};
+
+const id = await db.insertItem(prototype);
+
+const editPrototype = {
+  quantity: 50,
+};
+
+await db.editItem(id, editPrototype);
+
+// then check if the value is in the list
+const rows = await db.getItemList('*');
+
+debugger;
+
+for (i in rows) {
+  if (rows[i].id = id && rows[i].quantity === editPrototype.quantity) {
+    await db.deleteItem(id);
+    process.exit(0);
+  }
+}
+
+await db.deleteItem(id);
+
+throw new Error('Item recently added to DB not found');
+
+}
+
+main();
+
