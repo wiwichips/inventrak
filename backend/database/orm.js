@@ -42,7 +42,10 @@ exports.edit = function edit(id, prototype, dbName, tableName) {
   let sqlString = `UPDATE ${dbName}.${tableName} SET `;
 
   for (column in prototype) {
-    sqlString += `${column} = ${prototype[column]}, `
+    let padding = '';
+    if (typeof prototype[column] === 'string')
+      padding = '"'; 
+    sqlString += `${column} = ${padding}${prototype[column]}${padding}, `
   }
   sqlString = sqlString.substring(0, sqlString.length - 2);
   sqlString += ` WHERE id=${id};`;
