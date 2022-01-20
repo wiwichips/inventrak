@@ -1,9 +1,4 @@
-
-// placeholder in-memory inventory
-const inventory = {
-  lastId: -1,
-  items: {}
-};
+const db = require('./database/mysqlInterface');
 
 exports.createItem = async function createItem (title, groups=[], initialQuantity=0) {
   if (initialQuantity < 0) {
@@ -12,34 +7,23 @@ exports.createItem = async function createItem (title, groups=[], initialQuantit
 
   const newItem = {
     title,
-    groups,
     quantity: initialQuantity,
   };
-  const id = ++inventory.lastId;
 
-  inventory.items[id] = newItem;
-  
+  const id = await db.insertItem(newItem); 
+ 
   return id;
 }
 
 exports.editItem = async function editItem(id, edits) { 
-  if (!inventory.items[id])
-    throw new Error (`${id} does not exist`);
-  for (property in edits) {
-    if (!(property in inventory.items[id]))
-      throw new Error(`${property} is not a property of an item`);
-    inventory.items[id][property] = edits[property];
-  }
+  return db.editItem(id, edits);
 }
 
 exports.deleteItem = async function deleteItem (id) {
-  if (inventory.items[id])
-    delete inventory.items[id];
-  else
-    throw new Error(`${id} is an invalid ID`);
+  return db.deleteItem(id);
 }
 
 exports.listItems = async function listItems() {
-  return inventory.items;
+  return db.getItemList(); 
 }
 

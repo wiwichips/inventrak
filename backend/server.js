@@ -34,6 +34,8 @@ app.post('/create', (req, res) => {
 app.post('/edit', (req, res) => {
   const { id, prototype } = req.body;
 
+console.log(prototype);
+
   inventory.editItem(id, prototype)
     .then(() => res.send())
     .catch(error => {
